@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Course Management</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f2f2f2;
+    }
+
+    .form-box {
+      width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 8px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #5C4DFF;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    button {
+      background-color: #5C4DFF;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <script src="validation.js"></script>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Course Management</h2>
+    <form onsubmit="return validateCourseForm()">
+      <input type="text" id="course_name" placeholder="Course Name" required>
+      <select id="course_type" required>
+        <option value="">Select Type</option>
+        <option>B.Tech</option>
+        <option>Diploma</option>
+        <option>MCA</option>
+      </select>
+      <input type="number" id="semester_count" placeholder="Number of Semesters" min="1" max="10" required>
+      <button type="submit">Add Course</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Syllabus</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f2f2f2;
+    }
+    .form-box {
+      width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+      color: #5C4DFF;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      background-color: #5C4DFF;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+  <script src="validation.js"></script>
+</head>
+<body>
+  <div class="form-box">
+    <h2>View Syllabus</h2>
+    <form onsubmit="return validateViewForm()">
+      <select id="course" required>
+        <option value="">Select Course</option>
+        <option>B.Tech</option>
+        <option>Diploma</option>
+        <option>MCA</option>
+      </select>
+
+      <select id="program" required>
+        <option value="">Select Program</option>
+        <option>Computer Science</option>
+        <option>Mechanical</option>
+      </select>
+
+      <select id="semester" required>
+        <option value="">Select Semester</option>
+        <option>Semester 1</option>
+        <option>Semester 2</option>
+      </select>
+
+      <button type="submit">View</button>
+    </form>
+  </div>
+</body>
+</html>

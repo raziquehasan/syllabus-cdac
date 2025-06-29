@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Syllabus Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .upload-box {
+      width: 450px;
+      margin: 60px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+    }
+    h2 {
+      text-align: center;
+      color: #5C4DFF;
+    }
+    select, input[type="file"], button {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+    button {
+      background-color: #5C4DFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #473ae0;
+    }
+  </style>
+  <script src="validation.js"></script>
+</head>
+<body>
+
+  <div class="upload-box">
+    <h2>Upload Syllabus</h2>
+    <form onsubmit="return validateUploadForm()" method="post" enctype="multipart/form-data">
+      
+      <select id="course" name="course" required>
+        <option value="">Select Course</option>
+        <option value="B.Tech">B.Tech</option>
+        <option value="MCA">MCA</option>
+        <option value="Diploma">Diploma</option>
+      </select>
+
+      <select id="program" name="program" required>
+        <option value="">Select Program</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Mechanical">Mechanical</option>
+        <option value="Electrical">Electrical</option>
+      </select>
+
+      <select id="semester" name="semester" required>
+        <option value="">Select Semester</option>
+        <option value="Semester 1">Semester 1</option>
+        <option value="Semester 2">Semester 2</option>
+        <option value="Semester 3">Semester 3</option>
+        <!-- Add more semesters if needed -->
+      </select>
+
+      <input type="file" name="file" id="file" accept=".pdf" required>
+
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unit Management</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f2f2f2;
+    }
+    .form-box {
+      width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+      color: #5C4DFF;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      background-color: #5C4DFF;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+  </style>
+  <script src="validation.js"></script>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Unit Management</h2>
+    <form onsubmit="return validateUnitForm()">
+      <select id="subject_select" required>
+        <option value="">Select Subject</option>
+        <option>Data Structures</option>
+        <option>Machine Drawing</option>
+        <option>DBMS</option>
+      </select>
+      <input type="text" id="unit_title" placeholder="Unit Title" required>
+      <textarea id="unit_description" placeholder="Unit Content / Description" rows="4" required></textarea>
+      <button type="submit">Add Unit</button>
+    </form>
+  </div>
+</body>
+</html>

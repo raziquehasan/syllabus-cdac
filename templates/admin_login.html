@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Login - Syllabus Manager{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-login-container {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+    
+    .admin-login-card {
+        max-width: 400px;
+        width: 100%;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+    }
+    
+    .admin-login-header {
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .admin-login-body {
+        padding: 2rem;
+    }
+    
+    .form-floating {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-admin-login {
+        width: 100%;
+        padding: 0.75rem;
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        border: none;
+        border-radius: 0.5rem;
+        color: white;
+        font-weight: 600;
+        transition: transform 0.2s;
+    }
+    
+    .btn-admin-login:hover {
+        transform: translateY(-2px);
+        color: white;
+    }
+    
+    .admin-login-footer {
+        text-align: center;
+        padding: 1rem 2rem 2rem;
+        border-top: 1px solid #dee2e6;
+    }
+    
+    .admin-badge {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-login-container">
+    <div class="admin-login-card">
+        <div class="admin-login-header">
+            <div class="admin-badge">
+                <i class="fas fa-shield-alt me-1"></i>Administrator Access
+            </div>
+            <h3><i class="fas fa-user-shield me-2"></i>Admin Login</h3>
+            <p class="mb-0">Access the administrative panel</p>
+        </div>
+        
+        <div class="admin-login-body">
+            <form method="POST">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="admin@example.com" required>
+                    <label for="email">Admin Email</label>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <label for="password">Admin Password</label>
+                </div>
+                
+                <button type="submit" class="btn btn-admin-login">
+                    <i class="fas fa-sign-in-alt me-2"></i>Access Admin Panel
+                </button>
+            </form>
+        </div>
+        
+        <div class="admin-login-footer">
+            <p class="mb-2">Not an admin? <a href="{{ url_for('auth.login') }}" class="text-decoration-none">Student Login</a></p>
+            <p class="mb-0"><a href="{{ url_for('auth.register') }}" class="text-decoration-none">Register as Student</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

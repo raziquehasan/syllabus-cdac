@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Syllabus Manager{% endblock %}
+
+{% block extra_css %}
+<style>
+    .register-container {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+    
+    .register-card {
+        max-width: 500px;
+        width: 100%;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+    }
+    
+    .register-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .register-body {
+        padding: 2rem;
+    }
+    
+    .form-floating {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-register {
+        width: 100%;
+        padding: 0.75rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 0.5rem;
+        color: white;
+        font-weight: 600;
+        transition: transform 0.2s;
+    }
+    
+    .btn-register:hover {
+        transform: translateY(-2px);
+        color: white;
+    }
+    
+    .register-footer {
+        text-align: center;
+        padding: 1rem 2rem 2rem;
+        border-top: 1px solid #dee2e6;
+    }
+    
+    .password-strength {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .strength-weak { color: #dc3545; }
+    .strength-medium { color: #ffc107; }
+    .strength-strong { color: #198754; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <div class="register-card">
+        <div class="register-header">
+            <h3><i class="fas fa-user-plus me-2"></i>Create Account</h3>
+            <p class="mb-0">Join the Syllabus Management System</p>
+        </div>
+        
+        <div class="register-body">
+            <form method="POST" id="registerForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                            <label for="username">Username</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full Name" required>
+                            <label for="full_name">Full Name</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                    <label for="email">Email address</label>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="password-strength" id="passwordStrength"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                            <label for="confirm_password">Confirm Password</label>
+                        </div>
+                        <div class="password-strength" id="passwordMatch"></div>
+                    </div>
+                </div>
+                
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="terms" required>
+                    <label class="form-check-label" for="terms">
+                        I agree to the <a href="#" class="text-decoration-none">Terms and Conditions</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-register">
+                    <i class="fas fa-user-plus me-2"></i>Create Account
+                </button>
+            </form>
+        </div>
+        
+        <div class="register-footer">
+            <p class="mb-2">Already have an account? <a href="{{ url_for('auth.login') }}" class="text-decoration-none">Sign in here</a></p>
+            <p class="mb-0"><a href="{{ url_for('auth.admin_login') }}" class="text-decoration-none">Admin Login</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirm_password');
+    const passwordStrength = document.getElementById('passwordStrength');
+    const passwordMatch = document.getElementById('passwordMatch');
+    const form = document.getElementById('registerForm');
+
+    // Password strength checker
+    function checkPasswordStrength(password) {
+        let strength = 0;
+        let feedback = [];
+
+        if (password.length >= 8) strength++;
+        else feedback.push('At least 8 characters');
+
+        if (/[a-z]/.test(password)) strength++;
+        else feedback.push('Lowercase letter');
+
+        if (/[A-Z]/.test(password)) strength++;
+        else feedback.push('Uppercase letter');
+
+        if (/[0-9]/.test(password)) strength++;
+        else feedback.push('Number');
+
+        if (/[^A-Za-z0-9]/.test(password)) strength++;
+        else feedback.push('Special character');
+
+        return { strength, feedback };
+    }
+
+    // Update password strength indicator
+    password.addEventListener('input', function() {
+        const result = checkPasswordStrength(this.value);
+        let strengthText = '';
+        let strengthClass = '';
+
+        if (result.strength <= 2) {
+            strengthText = 'Weak';
+            strengthClass = 'strength-weak';
+        } else if (result.strength <= 4) {
+            strengthText = 'Medium';
+            strengthClass = 'strength-medium';
+        } else {
+            strengthText = 'Strong';
+            strengthClass = 'strength-strong';
+        }
+
+        passwordStrength.innerHTML = `<span class="${strengthClass}">${strengthText}</span>`;
+        
+        // Check password match
+        if (confirmPassword.value) {
+            checkPasswordMatch();
+        }
+    });
+
+    // Check password match
+    function checkPasswordMatch() {
+        if (password.value === confirmPassword.value) {
+            passwordMatch.innerHTML = '<span class="strength-strong">Passwords match</span>';
+            return true;
+        } else {
+            passwordMatch.innerHTML = '<span class="strength-weak">Passwords do not match</span>';
+            return false;
+        }
+    }
+
+    confirmPassword.addEventListener('input', checkPasswordMatch);
+
+    // Form validation
+    form.addEventListener('submit', function(e) {
+        const result = checkPasswordStrength(password.value);
+        const passwordsMatch = checkPasswordMatch();
+
+        if (result.strength < 3) {
+            e.preventDefault();
+            alert('Password is too weak. Please make it stronger.');
+            return false;
+        }
+
+        if (!passwordsMatch) {
+            e.preventDefault();
+            alert('Passwords do not match.');
+            return false;
+        }
+
+        if (!document.getElementById('terms').checked) {
+            e.preventDefault();
+            alert('Please agree to the Terms and Conditions.');
+            return false;
+        }
+    });
+
+    // Auto-generate username from full name
+    document.getElementById('full_name').addEventListener('input', function() {
+        const fullName = this.value;
+        const username = fullName.toLowerCase().replace(/[^a-z0-9]/g, '').substring(0, 15);
+        document.getElementById('username').value = username;
+    });
+});
+</script>
+{% endblock %}

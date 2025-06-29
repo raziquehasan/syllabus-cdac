@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - Syllabus Manager{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('dashboard') }}">
+                            <i class="fas fa-home me-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('view_syllabus') }}">
+                            <i class="fas fa-book me-2"></i>
+                            View Syllabus
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-download me-2"></i>
+                            Downloads
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-calendar me-2"></i>
+                            Academic Calendar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-question-circle me-2"></i>
+                            Help & Support
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">
+                    <i class="fas fa-user-graduate me-2"></i>
+                    Welcome, {{ current_user.full_name }}!
+                </h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Print</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Welcome Message -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h4 class="card-title">
+                                        <i class="fas fa-graduation-cap me-2"></i>
+                                        Student Portal
+                                    </h4>
+                                    <p class="card-text">
+                                        Access your course syllabi, download study materials, and stay updated with your academic progress.
+                                    </p>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <i class="fas fa-user-graduate fa-4x opacity-50"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-bolt me-2"></i>
+                                Quick Actions
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <a href="{{ url_for('view_syllabus') }}" class="btn btn-primary w-100">
+                                        <i class="fas fa-book me-2"></i>
+                                        View Syllabus
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="#" class="btn btn-success w-100">
+                                        <i class="fas fa-download me-2"></i>
+                                        Download Materials
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="#" class="btn btn-info w-100">
+                                        <i class="fas fa-calendar me-2"></i>
+                                        Academic Calendar
+                                    </a>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <a href="#" class="btn btn-warning w-100">
+                                        <i class="fas fa-question-circle me-2"></i>
+                                        Get Help
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Courses -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-book-open me-2"></i>
+                                Recent Courses
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Computer Programming</h6>
+                                        <small class="text-muted">CS101 - First Semester</small>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">Active</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Data Structures</h6>
+                                        <small class="text-muted">CS201 - Second Semester</small>
+                                    </div>
+                                    <span class="badge bg-success rounded-pill">Completed</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Database Management</h6>
+                                        <small class="text-muted">CS301 - Third Semester</small>
+                                    </div>
+                                    <span class="badge bg-warning rounded-pill">Upcoming</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-file-alt me-2"></i>
+                                Recent Downloads
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Programming Syllabus.pdf</h6>
+                                        <small class="text-muted">Downloaded 2 days ago</small>
+                                    </div>
+                                    <i class="fas fa-file-pdf text-danger"></i>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Data Structures Notes.docx</h6>
+                                        <small class="text-muted">Downloaded 1 week ago</small>
+                                    </div>
+                                    <i class="fas fa-file-word text-primary"></i>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Database Lab Manual.pdf</h6>
+                                        <small class="text-muted">Downloaded 2 weeks ago</small>
+                                    </div>
+                                    <i class="fas fa-file-pdf text-danger"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Progress -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">
+                                <i class="fas fa-chart-line me-2"></i>
+                                Academic Progress
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 text-center mb-3">
+                                    <div class="progress-circle" data-progress="75">
+                                        <div class="progress-circle-inner">
+                                            <span class="progress-circle-text">75%</span>
+                                        </div>
+                                    </div>
+                                    <h6 class="mt-2">Overall Progress</h6>
+                                </div>
+                                <div class="col-md-3 text-center mb-3">
+                                    <div class="progress-circle" data-progress="90">
+                                        <div class="progress-circle-inner">
+                                            <span class="progress-circle-text">90%</span>
+                                        </div>
+                                    </div>
+                                    <h6 class="mt-2">Attendance</h6>
+                                </div>
+                                <div class="col-md-3 text-center mb-3">
+                                    <div class="progress-circle" data-progress="85">
+                                        <div class="progress-circle-inner">
+                                            <span class="progress-circle-text">85%</span>
+                                        </div>
+                                    </div>
+                                    <h6 class="mt-2">Assignments</h6>
+                                </div>
+                                <div class="col-md-3 text-center mb-3">
+                                    <div class="progress-circle" data-progress="92">
+                                        <div class="progress-circle-inner">
+                                            <span class="progress-circle-text">92%</span>
+                                        </div>
+                                    </div>
+                                    <h6 class="mt-2">Exams</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .progress-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: conic-gradient(#007bff 0deg, #007bff calc(var(--progress) * 3.6deg), #e9ecef calc(var(--progress) * 3.6deg));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    .progress-circle-inner {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .progress-circle-text {
+        font-weight: bold;
+        color: #007bff;
+    }
+    
+    .opacity-50 {
+        opacity: 0.5;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Set progress values for circles
+    document.querySelectorAll('.progress-circle').forEach(circle => {
+        const progress = circle.getAttribute('data-progress');
+        circle.style.setProperty('--progress', progress);
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f2f2f2;
+    }
+    .form-box {
+      width: 400px;
+      margin: 60px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0px 0px 10px gray;
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+      color: #5C4DFF;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      background-color: #5C4DFF;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+  </style>
+  <script src="validation.js"></script>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Search</h2>
+    <form onsubmit="return validateSearchForm()">
+      <input type="text" id="search_term" placeholder="Enter keyword or subject" required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</body>
+</html>
